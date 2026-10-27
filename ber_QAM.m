@@ -4,7 +4,7 @@ function ber=ber_QAM(EbN0dB,M,AWGN_or_Rayleigh)
 %       =rdB: Average SNR(2*sigma Eb/N0)[dB] for Rayleigh channel
 % M = Modulation order (Constellation size)  
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/

@@ -6,22 +6,22 @@
 %      SNR dB
 %      MaxIter : No. of iteration
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 clear, figure(1), clf, figure(2), clf
-nSTOs = [-3 -3 2 2]; % ¶ÔÓ¦µÄSTO²ÉÑùÊı
+nSTOs = [-3 -3 2 2]; % å¯¹åº”çš„STOé‡‡æ ·æ•°
 CFOs = [0 0.5 0 0.5];
 %CFOs = [0 0 0 0];
-SNRdB=30; MaxIter=10; % µü´ú´ÎÊı
-Nfft=128; Ng=Nfft/4; % FFT size and GI (CP) length |FFT´óĞ¡£¬GI(CP)³¤¶È
-Nofdm=Nfft+Ng; % OFDM symbol length|OFDM·ûºÅ³¤¶È
+SNRdB=30; MaxIter=10; % è¿­ä»£æ¬¡æ•°
+Nfft=128; Ng=Nfft/4; % FFT size and GI (CP) length |FFTå¤§å°ï¼ŒGI(CP)é•¿åº¦
+Nofdm=Nfft+Ng; % OFDM symbol length|OFDMç¬¦å·é•¿åº¦
 Nbps=2; M=2^Nbps; % Number of bits per (modulated) symbol
 mod_object = modem.qammod('M',M, 'SymbolOrder','gray');
-Es=1; A=sqrt(3/2/(M-1)*Es); % Signal energy and QAM normalization factor|ĞÅºÅÄÜÁ¿ºÍQAM¹éÒ»»¯Òò×Ó
-N=Nfft;  com_delay = Nofdm/2; % Common delay|¹«¹²Ê±ÑÓ
+Es=1; A=sqrt(3/2/(M-1)*Es); % Signal energy and QAM normalization factor|ä¿¡å·èƒ½é‡å’ŒQAMå½’ä¸€åŒ–å› å­
+N=Nfft;  com_delay = Nofdm/2; % Common delay|å…¬å…±æ—¶å»¶
 Nsym=100;
 %%seed
 rand('seed',1); randn('seed',1);
@@ -32,8 +32,8 @@ for i=1:length(nSTOs)
    nSTO= nSTOs(i);  CFO= CFOs(i);
    %if i==3, rand('seed',8); randn('seed',8);  end
    %Transmit signal
-   x = []; % Initialize a block of OFDM signals|³õÊ¼»¯OFDMĞÅºÅ
-   for m=1:Nsym % random bits generates |·¢ËÍOFDM·ûºÅ
+   x = []; % Initialize a block of OFDM signals|åˆå§‹åŒ–OFDMä¿¡å·
+   for m=1:Nsym % random bits generates |å‘é€OFDMç¬¦å·
       msgint=randint(1,N,M); %bits_generator(1,Nsym*N,Nbps)
       %Xf1 = QAM(msgint,Nbps); % constellation mapping. average power=1 
       %Xf= A*qammod(msgint,M); % constellation mapping. average power=1  
@@ -47,18 +47,18 @@ for i=1:length(nSTOs)
    %%channel
    %figure(3), subplot(221), plot(Xf,'.'), %subplot(222), plot(Xf1,'.')
    %channel_(h,0); y= channel_(x_syms);
-   y = x;  % No channel effect|Ã»ÓĞĞÅµÀÓ°Ïì
+   y = x;  % No channel effect|æ²¡æœ‰ä¿¡é“å½±å“
    %%Signal power calculation
    sig_pow = y*y'/length(y); % sig_pow= mean(mean(y.*conj(y),2))
-   %%Frequency offset + Symbol Time Offset|¼ÓCFOºÍSTO
+   %%Frequency offset + Symbol Time Offset|åŠ CFOå’ŒSTO
    y_CFO= add_CFO(y,CFO,Nfft); y_CFO_STO= add_STO(y_CFO,-nSTO);
    v_ML=zeros(1,Ng); v_Cl=zeros(1,Ng);
-   Mag_cor= 0; Mag_dif= 0; % Ïà¹Øº¯Êı£¨Ê½5.12£©»ò²îÖµº¯Êı£¨Ê½5.11£©µÄÊ±±ä¹ì¼£
+   Mag_cor= 0; Mag_dif= 0; % ç›¸å…³å‡½æ•°ï¼ˆå¼5.12ï¼‰æˆ–å·®å€¼å‡½æ•°ï¼ˆå¼5.11ï¼‰çš„æ—¶å˜è½¨è¿¹
    %%Add additive white gaussian noise
    for iter=1:MaxIter
       %y_aw= add_AWGN(y_CFO_STO,sig_pow,SNRdB,'SNR',Nbps);  % AWGN added|
       y_aw = awgn(y_CFO_STO,SNRdB,'measured');
-      %%%%%%%Symbol Timing Acqusition|»ñÈ¡·ûºÅ¶¨Ê±
+      %%%%%%%Symbol Timing Acqusition|è·å–ç¬¦å·å®šæ—¶
       [STO_cor,mag_cor]= STO_by_correlation(y_aw,Nfft,Ng,com_delay);
       [STO_dif,mag_dif]= STO_by_difference(y_aw,Nfft,Ng,com_delay);
       v_ML(-STO_cor+Ng/2)= v_ML(-STO_cor+Ng/2)+1;

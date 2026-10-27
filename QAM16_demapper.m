@@ -1,6 +1,6 @@
-function [s] =QAM16_demapper(qam16,N) % N ∞≥¿« complex number∏¶ argument∑Œ πﬁæ“¥Ÿ.
+function [s] =QAM16_demapper(qam16,N) % N ‰ø∫Áãº complex numberÁî´ argumentËÇ∫ ÁΩêÁñΩ‰øÉ.
 
-%MIMO-OFDM Wireless Communications with MATLAB¢Á   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLAB„à¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 if nargin<2,  N = length(qam16);  end

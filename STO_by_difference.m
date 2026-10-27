@@ -1,16 +1,16 @@
 function [STO_est,Mag]=STO_by_difference(y,Nfft,Ng,com_delay)
 % STO estimation by minimizing the difference between CP and rear part of OFDM symbol
-% Í¨¹ı×îĞ¡»¯CPºÍOFDM·ûºÅºó²¿µÄ²îÖµ£¬ÊµÏÖSTOµÄ¹À¼Æ
+% é€šè¿‡æœ€å°åŒ–CPå’ŒOFDMç¬¦å·åéƒ¨çš„å·®å€¼ï¼Œå®ç°STOçš„ä¼°è®¡
 % estimates STO by minimizing the difference between CP (cyclic prefix) 
 %     and rear part of OFDM symbol
-% Input:  y          = Received OFDM signal including CP|°üÀ¨CPµÄOFDM½ÓÊÕĞÅºÅ
-%          Ng         = Number of samples in CP (Guard Interval)|CP/GIÄÚµÄ²ÉÑùÊı
-%          com_delay = Common delay|¹«¹²Ê±ÑÓ
-% Output: STO_est   = STO estimate|STO¹À¼Æ
+% Input:  y          = Received OFDM signal including CP|åŒ…æ‹¬CPçš„OFDMæ¥æ”¶ä¿¡å·
+%          Ng         = Number of samples in CP (Guard Interval)|CP/GIå†…çš„é‡‡æ ·æ•°
+%          com_delay = Common delay|å…¬å…±æ—¶å»¶
+% Output: STO_est   = STO estimate|STOä¼°è®¡
 %           Mag        = Correlation function trajectory varying with time
-%                   Ïà¹Øº¯ÊıµÄÊ±±ä¹ì¼£
+%                   ç›¸å…³å‡½æ•°çš„æ—¶å˜è½¨è¿¹
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
@@ -23,7 +23,7 @@ for n=1:N_ofdm
    %tmp1 = y(nn)-y(nn+Nfft); tmp = tmp1*tmp1'; % works for CFO=0
    %tmp = y(nn)*y(nn)'+y(nn+Nfft)*y(nn+Nfft)'-2*abs(y(nn))*abs(y(nn+Nfft))';
    tmp0 = abs(y(nn))-abs(y(nn+Nfft));
-   Mag(n) = tmp0*tmp0'; % Eq.(5.11) is strong against CFO{Ô­Ê¼×¢ÊÍÎª5.12£¬ÓëÊéÉÏ²»·û}|Ê½5.11£¨±È5.10¸ü¿¹CFO£©
+   Mag(n) = tmp0*tmp0'; % Eq.(5.11) is strong against CFO{åŸå§‹æ³¨é‡Šä¸º5.12ï¼Œä¸ä¹¦ä¸Šä¸ç¬¦}|å¼5.11ï¼ˆæ¯”5.10æ›´æŠ—CFOï¼‰
    %tmp0= abs(y(nn)-conj(y(nn+Nfft))); tmp= tmp0*tmp0.';
    %discrepancy = tmp - tmp2
    %Mag(n) = Mag(n) + tmp;

@@ -1,6 +1,6 @@
 function sig_mod = STTC_modulator(data,M,sim_options)
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 qam16=[1 1; 2 1; 3 1; 4 1; 4 2; 3 2; 2 2; 1 2; 1 3; 2 3; 3 3; 4 3; 4 4; 3 4; 2 4; 1 4];

@@ -7,7 +7,7 @@ function CCDF=CCDF_PTS(N,Nos,Nsb,b,dBs,Nblk)
 % dBs  : dB vector
 % Nblk : Number of OFDM blocks for iteration
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 NNos=N*Nos;                       % FFT size

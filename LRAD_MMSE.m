@@ -7,7 +7,7 @@ function[X_Estimated]= LRAD_MMSE(H_complex,y,noise_variance,delta)
 % Output parameters
 %     X_Estimated : estimated signal, nTx1
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 Nt = 4; Nr = 4;  N = 2*Nt;

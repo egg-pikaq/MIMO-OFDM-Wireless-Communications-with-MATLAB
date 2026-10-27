@@ -1,47 +1,47 @@
 % OFDM_basic.m
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 clear all
-NgType=1; % NgType=1/2 for cyclic prefix/zero padding|¶ÔÓÚCP»òZP£¬NgType=1»ò2
+NgType=1; % NgType=1/2 for cyclic prefix/zero padding|å¯¹äºCPæˆ–ZPï¼ŒNgType=1æˆ–2
 if NgType==1, nt='CP';  elseif NgType==2, nt='ZP';   end
-Ch=1;  % Ch=0/1 for AWGN/multipath channel|¶ÔÓÚAWGN/¶à¾¶ÈğÀûĞÅµÀ£¬channelCh=0/1
+Ch=1;  % Ch=0/1 for AWGN/multipath channel|å¯¹äºAWGN/å¤šå¾„ç‘åˆ©ä¿¡é“ï¼ŒchannelCh=0/1
 if Ch==0, chType='AWGN'; Target_neb=100; else chType='CH'; Target_neb=500; end
 figure(Ch+1), clf
-PowerdB=[0 -8 -17 -21 -25]; % Channel tap power profile 'dB'|ĞÅµÀ³éÍ·¹¦ÂÊÌØĞÔ 'dB'
-Delay=[0 3 5 6 8];          % Channel delay 'sample'|ĞÅµÀÊ±ÑÓ£¨²ÉÑùµã£©
-Power=10.^(PowerdB/10);     % Channel tap power profile 'linear scale'|ĞÅµÀ³éÍ·¹¦ÂÊÌØĞÔ£¨ÏßĞÔ³ß¶È£©
-Ntap=length(PowerdB);       % Chanel tap number|ĞÅµÀ³éÍ·Êı
-Lch=Delay(end)+1;           % Channel length|ĞÅµÀ³¤¶È
-Nbps=4; M=2^Nbps;  % Modulation order=2/4/6 for QPSK/16QAM/64QAM|µ÷ÖÆ½×Êı=2/4/6£ºQPSK/16QAM/64QAM
-Nfft=64;           % FFT size|FFT´óĞ¡
-Ng=3; %Nfft/4;         % Ng=0: Guard interval length|GIµÄ³¤¶È£¬Ã»ÓĞ±£»¤¼ä¸ôÊ±£¬Ng=0
+PowerdB=[0 -8 -17 -21 -25]; % Channel tap power profile 'dB'|ä¿¡é“æŠ½å¤´åŠŸç‡ç‰¹æ€§ 'dB'
+Delay=[0 3 5 6 8];          % Channel delay 'sample'|ä¿¡é“æ—¶å»¶ï¼ˆé‡‡æ ·ç‚¹ï¼‰
+Power=10.^(PowerdB/10);     % Channel tap power profile 'linear scale'|ä¿¡é“æŠ½å¤´åŠŸç‡ç‰¹æ€§ï¼ˆçº¿æ€§å°ºåº¦ï¼‰
+Ntap=length(PowerdB);       % Chanel tap number|ä¿¡é“æŠ½å¤´æ•°
+Lch=Delay(end)+1;           % Channel length|ä¿¡é“é•¿åº¦
+Nbps=4; M=2^Nbps;  % Modulation order=2/4/6 for QPSK/16QAM/64QAM|è°ƒåˆ¶é˜¶æ•°=2/4/6ï¼šQPSK/16QAM/64QAM
+Nfft=64;           % FFT size|FFTå¤§å°
+Ng=3; %Nfft/4;         % Ng=0: Guard interval length|GIçš„é•¿åº¦ï¼Œæ²¡æœ‰ä¿æŠ¤é—´éš”æ—¶ï¼ŒNg=0
 % Ng=Nfft/4;
-Nsym=Nfft+Ng;      % Symbol duration|·ûºÅÖÜÆÚ
-Nvc=Nfft/4;        % Nvc=0: no virtual carrier|Nvc=0£ºÃ»ÓĞVC
+Nsym=Nfft+Ng;      % Symbol duration|ç¬¦å·å‘¨æœŸ
+Nvc=Nfft/4;        % Nvc=0: no virtual carrier|Nvc=0ï¼šæ²¡æœ‰VC
 Nused=Nfft-Nvc;
  
 EbN0=[0:5:20];    % EbN0
-N_iter=1e5;       % Number of iterations for each EbN0|¶ÔÓÚÃ¿Ò»¸öEbN0µÄµü´ú´ÎÊı
-Nframe=3;         % Number of symbols per frame|Ã¿Ò»Ö¡µÄ·ûºÅÊı
-sigPow=0;         % Signal power initialization|³õÊ¼ĞÅºÅ¹¦ÂÊ
+N_iter=1e5;       % Number of iterations for each EbN0|å¯¹äºæ¯ä¸€ä¸ªEbN0çš„è¿­ä»£æ¬¡æ•°
+Nframe=3;         % Number of symbols per frame|æ¯ä¸€å¸§çš„ç¬¦å·æ•°
+sigPow=0;         % Signal power initialization|åˆå§‹ä¿¡å·åŠŸç‡
 file_name=['OFDM_BER_' chType '_' nt '_' 'GL' num2str(Ng) '.dat'];
 fid=fopen(file_name, 'w+');
 norms=[1 sqrt(2) 0 sqrt(10) 0 sqrt(42)];     % BPSK 4-QAM 16-QAM
 for i=0:length(EbN0)
    randn('state',0); rand('state',0); 
-   Ber=0;%Ô­Ê¼´úÂëÎªBer2=ber();ÎŞ·¨ÔËĞĞ % BER initialization |³õÊ¼»¯BER
-   Neb=0; Ntb=0; % Initialize the number of error/total bits|³õÊ¼»¯´íÎó±ÈÌØÊı/×Ü±ÈÌØÊı
+   Ber=0;%åŸå§‹ä»£ç ä¸ºBer2=ber();æ— æ³•è¿è¡Œ % BER initialization |åˆå§‹åŒ–BER
+   Neb=0; Ntb=0; % Initialize the number of error/total bits|åˆå§‹åŒ–é”™è¯¯æ¯”ç‰¹æ•°/æ€»æ¯”ç‰¹æ•°
    for m=1:N_iter
       % Tx______________________________________________________________
       X= randint(1,Nused*Nframe,M); % bit: integer vector
       Xmod= qammod(X,M,0,'gray')/norms(Nbps);
       if NgType~=2, x_GI=zeros(1,Nframe*Nsym);
        elseif NgType==2, x_GI= zeros(1,Nframe*Nsym+Ng);
-        % Extend an OFDM symbol by Ng zeros |ÓÃNg¸öÁãÀ©Õ¹OFDM·ûºÅ
+        % Extend an OFDM symbol by Ng zeros |ç”¨Ngä¸ªé›¶æ‰©å±•OFDMç¬¦å·
       end
       kk1=[1:Nused/2]; kk2=[Nused/2+1:Nused]; kk3=1:Nfft; kk4=1:Nsym;
       for k=1:Nframe
@@ -52,32 +52,32 @@ for i=0:length(EbN0)
          x_GI(kk4)= guard_interval(Ng,Nfft,NgType,x);
          kk1=kk1+Nused; kk2= kk2+Nused; kk3=kk3+Nfft; kk4=kk4+Nsym;
       end
-      if Ch==0, y= x_GI;  % No channel|Ã»ÓĞĞÅµÀ
-       else  % Multipath fading channel|¶à¾¶Ë¥ÂäĞÅµÀ
+      if Ch==0, y= x_GI;  % No channel|æ²¡æœ‰ä¿¡é“
+       else  % Multipath fading channel|å¤šå¾„è¡°è½ä¿¡é“
         channel=(randn(1,Ntap)+j*randn(1,Ntap)).*sqrt(Power/2);
-        h=zeros(1,Lch); h(Delay+1)=channel; % cir: channel impulse response|ĞÅµÀÂö³åÏìÓ¦
+        h=zeros(1,Lch); h(Delay+1)=channel; % cir: channel impulse response|ä¿¡é“è„‰å†²å“åº”
         y = conv(x_GI,h); 
       end
-      if i==0 % Only to measure the signal power for adding AWGN noise|Ö»²âÁ¿ĞÅºÅ¹¦ÂÊ
+      if i==0 % Only to measure the signal power for adding AWGN noise|åªæµ‹é‡ä¿¡å·åŠŸç‡
         y1=y(1:Nframe*Nsym); sigPow = sigPow + y1*y1';
         continue;
       end
-      % Add AWGN noise________________________________________________|¼ÓAWGNÔëÉù
-      snr = EbN0(i)+10*log10(Nbps*(Nused/Nfft)); % SNR vs. Eb/N0|Ê½4.28£¬ÓÉÆµÓòSNRËãÊ±ÓòSNR
+      % Add AWGN noise________________________________________________|åŠ AWGNå™ªå£°
+      snr = EbN0(i)+10*log10(Nbps*(Nused/Nfft)); % SNR vs. Eb/N0|å¼4.28ï¼Œç”±é¢‘åŸŸSNRç®—æ—¶åŸŸSNR
       noise_mag = sqrt((10.^(-snr/10))*sigPow/2); % N0=Eb/SNR
       y_GI = y + noise_mag*(randn(size(y))+j*randn(size(y)));
       % Rx_____________________________________________________________
       kk1=(NgType==2)*Ng+[1:Nsym]; kk2=1:Nfft;
       kk3=1:Nused; kk4=Nused/2+Nvc+1:Nfft; kk5=(Nvc~=0)+[1:Nused/2];
       if Ch==1
-         H= fft([h zeros(1,Nfft-Lch)]); % Channel frequency response|ĞÅµÀÆµÂÊÏìÓ¦
+         H= fft([h zeros(1,Nfft-Lch)]); % Channel frequency response|ä¿¡é“é¢‘ç‡å“åº”
          H_shift(kk3)= [H(kk4) H(kk5)]; 
       end
       for k=1:Nframe
          Y(kk2)= fft(remove_GI(Ng,Nsym,NgType,y_GI(kk1)));
          Y_shift=[Y(kk4) Y(kk5)];
          if Ch==0,  Xmod_r(kk3) = Y_shift;
-          else Xmod_r(kk3)= Y_shift./H_shift;  % Equalizer - channel compensation|¾ùºâÆ÷
+          else Xmod_r(kk3)= Y_shift./H_shift;  % Equalizer - channel compensation|å‡è¡¡å™¨
          end
          kk1=kk1+Nsym; kk2=kk2+Nfft; kk3=kk3+Nused; kk4=kk4+Nfft; kk5=kk5+Nfft;
       end

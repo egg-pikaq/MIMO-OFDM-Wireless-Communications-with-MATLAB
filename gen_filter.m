@@ -11,7 +11,7 @@ function filt=gen_filter(fm_Hz,fmax_Hz,Nfading,Nfosf,type,varargin)
 %  Outputs:                  
 %    filt     : filter coefficients     
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 % Doppler BW= 2*fm*Nfosf ==> 2*fmax_Hz*Nfosf

@@ -5,7 +5,7 @@ function [entry_sorted,entry_index_sorted] =  sort_matrix(matrix)
 %    entry_sorted : increasingly ordered norm
 %    entry_index_sorted : ordered QAM_table index
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 [Nrow,Ncol] = size(matrix);

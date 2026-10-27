@@ -1,15 +1,15 @@
 function y_STO=add_STO(y,iSTO)
-%  ©º”STO
-%   y£∫Ω” ’–≈∫≈
-% iSTO£∫∂‘”¶”⁄STOµƒ≤…—˘ ˝
+% ÊñΩÂä†STO
+%   yÔºöÊé•Êî∂‰ø°Âè∑
+% iSTOÔºöÂØπÂ∫î‰∫éSTOÁöÑÈááÊ†∑Êï∞
 
-% MIMO-OFDM Wireless Communications with MATLAB¢Á   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLAB„à¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 if iSTO>=0, 
-    y_STO = [y(iSTO+1:end) zeros(1,iSTO)]; % advance|Ã·«∞
+    y_STO = [y(iSTO+1:end) zeros(1,iSTO)]; % advance|ÊèêÂâç
 else
-    y_STO = [zeros(1,-iSTO) y(1:end+iSTO)];  % delay|÷Õ∫Û
+    y_STO = [zeros(1,-iSTO) y(1:end+iSTO)];  % delay|ÊªûÂêé
 end

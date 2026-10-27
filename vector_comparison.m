@@ -6,7 +6,7 @@ function [check]=vector_comparison(vector_1,vector_2)
 % Output parameters
 %   check : 1-> same vectors, 0-> different vectors
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 check = 0;

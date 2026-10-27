@@ -13,7 +13,7 @@ function [BS_theta_deg,MS_theta_deg,BS_PHI_rad]=gen_phase(BS_theta_LOS_deg,BS_AS
 %       BS_PHI_rad      : (Npath x M) random phase in degree at BS
 %       MS_theta_deg    : (Npath x M) DoA per path in degree at MS
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 if nargin==6,  M=20;  end

@@ -9,7 +9,7 @@ function [Q,R,T] = original_LLL(Q,R,m,delta)
 %     R : R with a small condition number
 %     T : unimodular matrix
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 P=eye(m);  T=P;  k=2;

@@ -1,21 +1,21 @@
 % test_orthogonality.m
 % to plot several sinusoidal signals with different frequencies/phases and their DFT sequences
 % and to check their orthogonality
-% »­³ö¾ßÓĞ²»Í¬ÆµÂÊ/ÏàÎ»µÄÕıÏÒĞÅºÅ¼°ÆäDFTĞòÁĞ
-% {exp(j2¦Ğ*fk*t)},0¡Ük¡ÜN-1£¬fk=k/Tsym
+% ç”»å‡ºå…·æœ‰ä¸åŒé¢‘ç‡/ç›¸ä½çš„æ­£å¼¦ä¿¡å·åŠå…¶DFTåºåˆ—
+% {exp(j2Ï€*fk*t)},0â‰¤kâ‰¤N-1ï¼Œfk=k/Tsym
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 clear, clf
-T=1.6; ND=1000; nn=0:ND; ts=0.002; tt=nn*ts; % time interval|Ê±¼ä¼ä¸ô
-Ts = 0.1; M = round(Ts/ts); % Sampling period in continuous/discrete-time |Á¬Ğø/ÀëÉ¢Ê±¼äµÄ²ÉÑù¼ä¸ô
-nns = [1:M:ND+1]; % Sampling indices |²ÉÑù±àºÅ
-tts = (nns-1)*ts; % Sampling times |²ÉÑùÊ±¼ä
-ks = [1:4 3.9 4]; % Frequency indices |ÆµÂÊ±àºÅ
-tds = [0 0 0.1 0.1 0 0.15]; %delay times |Ê±ÑÓ
+T=1.6; ND=1000; nn=0:ND; ts=0.002; tt=nn*ts; % time interval|æ—¶é—´é—´éš”
+Ts = 0.1; M = round(Ts/ts); % Sampling period in continuous/discrete-time |è¿ç»­/ç¦»æ•£æ—¶é—´çš„é‡‡æ ·é—´éš”
+nns = [1:M:ND+1]; % Sampling indices |é‡‡æ ·ç¼–å·
+tts = (nns-1)*ts; % Sampling times |é‡‡æ ·æ—¶é—´
+ks = [1:4 3.9 4]; % Frequency indices |é¢‘ç‡ç¼–å·
+tds = [0 0 0.1 0.1 0 0.15]; %delay times |æ—¶å»¶
 K = length(ks);
 for i=1:K
    k=ks(i); td=tds(i);  x(i,:) = exp(j*2*pi*k*(tt-td)/T); 
@@ -27,7 +27,7 @@ for i=1:K
    stem(tts,real(x(i,nns)),'.','markersize',5)
 end
 N = round(T/Ts); xn = x(:,nns(1:N));
-xn*xn'/ N % check orthogonality |¼ìÑéÕı½»ĞÔ
+xn*xn'/ N % check orthogonality |æ£€éªŒæ­£äº¤æ€§
 Xk = fft(xn.').';  kk = 0:N-1;
 for i=1:K
    k=ks(i); td=tds(i);   

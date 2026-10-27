@@ -1,17 +1,17 @@
 % single_carrier_PAPR.m
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 clear
-Ts = 1; % ²ÉÑùÖÜÆÚ
-Nos = 8; % ¹ı²ÉÑùÒò×Ó
-Fc = 1; % ÔØ²¨ÆµÂÊ
+Ts = 1; % é‡‡æ ·å‘¨æœŸ
+Nos = 8; % è¿‡é‡‡æ ·å› å­
+Fc = 1; % è½½æ³¢é¢‘ç‡
 bits = [1 2 4]; %bits=2;
 for i_b = 1:length(bits)
-   b = bits(i_b);  M = 2^b; % µ÷ÖÆ½×Êı
+   b = bits(i_b);  M = 2^b; % è°ƒåˆ¶é˜¶æ•°
    if b==1, Mod='BPSK'; mod_object = modem.pskmod('M',M); A=1;
     elseif b==2, Mod='QPSK';  mod_object = modem.pskmod('M',M,'PhaseOffset',pi/4); A=1;
     else Mod=[num2str(2^b) 'QAM']; mod_object = modem.qammod('M',M); 
@@ -20,10 +20,10 @@ for i_b = 1:length(bits)
    msgint=[0:M-1]; X=A*modulate(mod_object,msgint);
    [X,Mod] = mapper(b); 
    %Nos_=16; [out_,xr_,xi_,time_] = modulation0(inI,inQ,M,Ts,Nos_,Fc);
-   Nos_=Nos*8; % ¹ı²ÉÑùÒò×Ó£¬Ê¹ĞÅºÅ¿´ÉÏÈ¥ÏñÁ¬ĞøÊ±¼äĞÅºÅ
-   [xt_pass_,time_] = modulation(X,Ts,Nos_,Fc); % Á¬ĞøÊ±¼ä
+   Nos_=Nos*8; % è¿‡é‡‡æ ·å› å­ï¼Œä½¿ä¿¡å·çœ‹ä¸Šå»åƒè¿ç»­æ—¶é—´ä¿¡å·
+   [xt_pass_,time_] = modulation(X,Ts,Nos_,Fc); % è¿ç»­æ—¶é—´
    %Nos=4; [out,xr_,xi_,time] = modulation0(inI,inQ,M,Ts,Nos,Fc);
-   [xt_pass,time] = modulation(X,Ts,Nos,Fc); % L±¶¹ı²ÉÑù
+   [xt_pass,time] = modulation(X,Ts,Nos,Fc); % Lå€è¿‡é‡‡æ ·
    for i_s = 1:M
       %xt_base(Nos*(i_s-1)*2+1:Nos*i_s*2) = X(i_s)*ones(1,Nos*2);
       %xt_base(Nos_/2*(i_s-1)+1:Nos_/2*i_s) = X(i_s)*ones(1,Nos_/2);

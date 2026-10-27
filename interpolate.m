@@ -1,20 +1,20 @@
 function H_interpolated = interpolate(H_est,pilot_loc,Nfft,method)
-% Input:        H_est    = Channel estimate using pilot sequence|Ê¹ÓÃµ¼ÆµĞòÁĞµÄĞÅµÀ¹À¼Æ
-%           pilot_loc    = location of pilot sequence|µ¼ÆµĞòÁĞµÄÎ»ÖÃ
-%                Nfft    = FFT size|FFT´óĞ¡
-%              method    = 'linear'/'spline'|²åÖµ·½·¨£ºÏßĞÔ/Èı´ÎÑùÌõ²åÖµ
-% Output: H_interpolated = interpolated channel|²åÖµºóµÄĞÅµÀ
+% Input:        H_est    = Channel estimate using pilot sequence|ä½¿ç”¨å¯¼é¢‘åºåˆ—çš„ä¿¡é“ä¼°è®¡
+%           pilot_loc    = location of pilot sequence|å¯¼é¢‘åºåˆ—çš„ä½ç½®
+%                Nfft    = FFT size|FFTå¤§å°
+%              method    = 'linear'/'spline'|æ’å€¼æ–¹æ³•ï¼šçº¿æ€§/ä¸‰æ¬¡æ ·æ¡æ’å€¼
+% Output: H_interpolated = interpolated channel|æ’å€¼åçš„ä¿¡é“
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
-if pilot_loc(1)>1 % ²¹×ãµÚÒ»µãµÄĞÅµÀ
+if pilot_loc(1)>1 % è¡¥è¶³ç¬¬ä¸€ç‚¹çš„ä¿¡é“
   slope = (H_est(2)-H_est(1))/(pilot_loc(2)-pilot_loc(1));
   H_est = [H_est(1)-slope*(pilot_loc(1)-1)  H_est]; pilot_loc = [1 pilot_loc];
 end
-if pilot_loc(end)<Nfft % ²¹×ã×îºóÒ»µãµÄĞÅµÀ
+if pilot_loc(end)<Nfft % è¡¥è¶³æœ€åä¸€ç‚¹çš„ä¿¡é“
   slope = (H_est(end)-H_est(end-1))/(pilot_loc(end)-pilot_loc(end-1));  
   H_est = [H_est  H_est(end)+slope*(Nfft-pilot_loc(end))]; pilot_loc = [pilot_loc Nfft];
 end

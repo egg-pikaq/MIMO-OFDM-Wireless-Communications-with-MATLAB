@@ -12,7 +12,7 @@ function [FadMtx,tf]=SUI_fading(P_dB,K_factor,Dopplershift_Hz,Fnorm_dB,N,M,Nfosf
 %    FadMtx          : length(P_dB) x N fading matrix
 %    tf              : fading sample time=1/(Max. Doppler BW * Nfosf) 
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 Power = 10.^(P_dB/10);                    % calculate linear power

@@ -13,7 +13,7 @@ function ftn=Doppler_PSD_function(type)
 % f0 is the normalized Doppler frequency defined as f0=f/fm 
 %  where fm is the maximum Doppler frequency
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 switch lower(type(1:2))

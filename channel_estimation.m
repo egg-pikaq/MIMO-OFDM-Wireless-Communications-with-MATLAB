@@ -1,48 +1,48 @@
 %channel_estimation.m
-% for LS/DFT Channel Estimation with linear/spline interpolation|²ÉÓÃÏßĞÔ/ÑùÌõ²åÖµµÄLS/DFTĞÅµÀ¹À¼Æ
+% for LS/DFT Channel Estimation with linear/spline interpolation|é‡‡ç”¨çº¿æ€§/æ ·æ¡æ’å€¼çš„LS/DFTä¿¡é“ä¼°è®¡
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 clear all; close all; figure(1), clf, figure(2), clf
 Nfft=32;  Ng=Nfft/8;  Nofdm=Nfft+Ng;  Nsym=100;
-Nps=4; Np=Nfft/Nps; Nd=Nfft-Np; % Pilot spacing, Numbers of pilots and data per OFDM symbol|µ¼Æµ¼ä¸ô¡¢Ã¿¸öOFDM·ûºÅµÄµ¼ÆµÊı¡¢Ã¿¸öOFDM·ûºÅµÄÊı¾İÊıÁ¿
-Nbps=4; M=2^Nbps; % Number of bits per (modulated) symbol|Ã¿¸öµ÷ÖÆ·ûºÅµÄ±ÈÌØÊı
+Nps=4; Np=Nfft/Nps; Nd=Nfft-Np; % Pilot spacing, Numbers of pilots and data per OFDM symbol|å¯¼é¢‘é—´éš”ã€æ¯ä¸ªOFDMç¬¦å·çš„å¯¼é¢‘æ•°ã€æ¯ä¸ªOFDMç¬¦å·çš„æ•°æ®æ•°é‡
+Nbps=4; M=2^Nbps; % Number of bits per (modulated) symbol|æ¯ä¸ªè°ƒåˆ¶ç¬¦å·çš„æ¯”ç‰¹æ•°
 mod_object = modem.qammod('M',M, 'SymbolOrder','gray');
 demod_object = modem.qamdemod('M',M, 'SymbolOrder','gray');
-Es=1; A=sqrt(3/2/(M-1)*Es); % Signal energy and QAM normalization factor|ĞÅºÅÄÜÁ¿¡¢QAM¹éÒ»»¯Òò×Ó
+Es=1; A=sqrt(3/2/(M-1)*Es); % Signal energy and QAM normalization factor|ä¿¡å·èƒ½é‡ã€QAMå½’ä¸€åŒ–å› å­
 %fs = 10e6;  ts = 1/fs;  % Sampling frequency and Sampling period
 SNRs = [30];  sq2=sqrt(2);
 for i=1:length(SNRs)
    SNR = SNRs(i); 
    rand('seed',1); randn('seed',1);
-   MSE = zeros(1,6); nose = 0; % ±äÁ¿noseÓÃÓÚÍ³¼Æ´íÎó·ûºÅÊı£¬Number_of_symbol_errors
+   MSE = zeros(1,6); nose = 0; % å˜é‡noseç”¨äºç»Ÿè®¡é”™è¯¯ç¬¦å·æ•°ï¼ŒNumber_of_symbol_errors
    for nsym=1:Nsym
-      Xp = 2*(randn(1,Np)>0)-1;    % Pilot sequence generation|Éú³Éµ¼ÆµĞòÁĞ£¬-1ºÍ+1µÄËæ»úĞòÁĞ
+      Xp = 2*(randn(1,Np)>0)-1;    % Pilot sequence generation|ç”Ÿæˆå¯¼é¢‘åºåˆ—ï¼Œ-1å’Œ+1çš„éšæœºåºåˆ—
       %Data = ((2*(randn(1,Nd)>0)-1) + j*(2*(randn(1,Nd)>0)-1))/sq2; % QPSK modulation
-      msgint=randint(1,Nfft-Np,M);    % bit generation|Éú³É±ÈÌØ
+      msgint=randint(1,Nfft-Np,M);    % bit generation|ç”Ÿæˆæ¯”ç‰¹
       Data = modulate(mod_object,msgint)*A;
       %Data = modulate(mod_object, msgint); Data = modnorm(Data,'avpow',1)*Data;   % normalization
       ip = 0;    pilot_loc = [];
-      for k=1:Nfft % ÔÚÆµÓòµÄÌØ¶¨Î»ÖÃ¼ÓÈëµ¼ÆµºÍÊı¾İ
+      for k=1:Nfft % åœ¨é¢‘åŸŸçš„ç‰¹å®šä½ç½®åŠ å…¥å¯¼é¢‘å’Œæ•°æ®
          if mod(k,Nps)==1
            X(k) = Xp(floor(k/Nps)+1); pilot_loc = [pilot_loc k]; ip = ip+1;
-          else        X(k) = Data(k-ip); % ipÖ¸Ê¾ÁËµ±Ç°OFDM·ûºÅÖĞÒÑ¾­¼ÓÈëµÄµ¼ÆµµÄÊıÁ¿
+          else        X(k) = Data(k-ip); % ipæŒ‡ç¤ºäº†å½“å‰OFDMç¬¦å·ä¸­å·²ç»åŠ å…¥çš„å¯¼é¢‘çš„æ•°é‡
          end
       end
       x = ifft(X,Nfft);                            % IFFT
-      xt = [x(Nfft-Ng+1:Nfft) x];                  % Add CP|¼ÓÑ­»·Ç°×º
-      h = [(randn+j*randn) (randn+j*randn)/2];     % generates a (2-tap) channel|²úÉúÒ»¸ö2³éÍ·ĞÅµÀ
-      H = fft(h,Nfft); channel_length = length(h); % True channel and its time-domain length|Êµ¼ÊĞÅµÀºÍËüµÄ³¤¶È
-      H_power_dB = 10*log10(abs(H.*conj(H)));      % True channel power in dB|Êµ¼ÊĞÅµÀµÄ¹¦ÂÊ[dB]
-      y_channel = conv(xt, h);                     % Channel path (convolution)|ĞÅµÀÂ·¾¶£¨¾í»ı£©
+      xt = [x(Nfft-Ng+1:Nfft) x];                  % Add CP|åŠ å¾ªç¯å‰ç¼€
+      h = [(randn+j*randn) (randn+j*randn)/2];     % generates a (2-tap) channel|äº§ç”Ÿä¸€ä¸ª2æŠ½å¤´ä¿¡é“
+      H = fft(h,Nfft); channel_length = length(h); % True channel and its time-domain length|å®é™…ä¿¡é“å’Œå®ƒçš„é•¿åº¦
+      H_power_dB = 10*log10(abs(H.*conj(H)));      % True channel power in dB|å®é™…ä¿¡é“çš„åŠŸç‡[dB]
+      y_channel = conv(xt, h);                     % Channel path (convolution)|ä¿¡é“è·¯å¾„ï¼ˆå·ç§¯ï¼‰
       sig_pow = mean(y_channel.*conj(y_channel));
       %y_aw(1,1:Nofdm) = y(1,1:Nofdm) + ...
       %   sqrt((10.^(-SNR/10))*sig_pow/2)*(randn(1,Nofdm)+j*randn(1,Nofdm)); % Add noise(AWGN)
       yt = awgn(y_channel,SNR,'measured');  
-      y = yt(Ng+1:Nofdm);                   % Remove CP|È¥CP
+      y = yt(Ng+1:Nofdm);                   % Remove CP|å»CP
       Y = fft(y);                           % FFT
       for m=1:3
          if m==1, H_est = LS_CE(Y,Xp,pilot_loc,Nfft,Nps,'linear'); method='LS-linear'; % LS estimation with linear interpolation

@@ -9,7 +9,7 @@ function PL=PL_logdist_or_norm(fc,d,d0,n,sigma)
 % output
 %       PL    : path loss[dB]
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 lamda = 3e8/fc;

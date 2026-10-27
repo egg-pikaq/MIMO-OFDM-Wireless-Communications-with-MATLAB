@@ -5,7 +5,7 @@ function [X_hat]=QRM_MLD_detecor(Y,H)
 % Output parameter
 %   X_hat : estimated signal, nTx1
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 global QAM_table  Q  R  Y_tilde  NT  M;

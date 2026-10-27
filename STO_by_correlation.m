@@ -1,33 +1,33 @@
 function [STO_est, Mag]=STO_by_correlation(y,Nfft,Ng,com_delay)
 % STO estimation by maximizing the correlation between CP and rear part of OFDM symbol
-% Í¨¹ı×î´ó»¯CPºÍOFDM·ûºÅºó²¿µÄÏà¹Øº¯Êı£¬µÃµ½STOµÄ¹À¼Æ
+% é€šè¿‡æœ€å¤§åŒ–CPå’ŒOFDMç¬¦å·åéƒ¨çš„ç›¸å…³å‡½æ•°ï¼Œå¾—åˆ°STOçš„ä¼°è®¡
 % estimates STO by maximizing the correlation between CP (cyclic prefix)|
 %     and rear part of OFDM symbol
-% Input:  y         = Received OFDM signal including CP|°üÀ¨CPµÄOFDM½ÓÊÕĞÅºÅ
-%         Ng        = Number of samples in Guard Interval (CP)|GI/CPÄÚµÄ²ÉÑùÊı
-%         com_delay = Common delay|¹«¹²Ê±ÑÓ
-% Output: STO_est   = STO estimate|STO¹À¼Æ
+% Input:  y         = Received OFDM signal including CP|åŒ…æ‹¬CPçš„OFDMæ¥æ”¶ä¿¡å·
+%         Ng        = Number of samples in Guard Interval (CP)|GI/CPå†…çš„é‡‡æ ·æ•°
+%         com_delay = Common delay|å…¬å…±æ—¶å»¶
+% Output: STO_est   = STO estimate|STOä¼°è®¡
 %         Mag       = Correlation function trajectory varying with time
-%                   Ïà¹Øº¯ÊıµÄÊ±±ä¹ì¼£
+%                   ç›¸å…³å‡½æ•°çš„æ—¶å˜è½¨è¿¹
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
-N_ofdm=Nfft+Ng; % OFDM·ûºÅ³¤¶È
+N_ofdm=Nfft+Ng; % OFDMç¬¦å·é•¿åº¦
 if nargin<4
     com_delay = N_ofdm/2; 
 end
 %maximum=1e-8; 
 nn=0:Ng-1; 
-yy = y(nn+com_delay)*y(nn+com_delay+Nfft)';	% Ïà¹Øº¯Êı
+yy = y(nn+com_delay)*y(nn+com_delay+Nfft)';	% ç›¸å…³å‡½æ•°
 maximum=abs(yy);
 for n=1:N_ofdm
    n1 = n-1;
    yy1 = y(n1+com_delay)*y(n1+com_delay+Nfft)';
    yy2 = y(n1+com_delay+Ng)*y(n1+com_delay+Nfft+Ng)';
-   yy = yy-yy1+yy2;   Mag(n)=abs(yy); % Eq.(5.12){Ô­Ê¼×¢ÊÍÎª5.13£¬ÓëÊéÉÏ²»·û}|Ê½£¨5.12£©
+   yy = yy-yy1+yy2;   Mag(n)=abs(yy); % Eq.(5.12){åŸå§‹æ³¨é‡Šä¸º5.13ï¼Œä¸ä¹¦ä¸Šä¸ç¬¦}|å¼ï¼ˆ5.12ï¼‰
    if (Mag(n)>maximum)
      maximum=Mag(n); STO_est = N_ofdm-com_delay-n1; 
    end

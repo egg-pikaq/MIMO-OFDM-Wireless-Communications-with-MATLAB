@@ -9,7 +9,7 @@ function PL=PL_IEEE80216d(fc,d,type,htx,hrx,corr_fact,mod)
 %         mod      : set to 'mod' to get the modified IEEE 802.16d model
 % output - PL      : path loss [dB]
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 Mod='UNMOD';

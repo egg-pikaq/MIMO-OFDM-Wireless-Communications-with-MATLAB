@@ -8,7 +8,7 @@ function [CCDF,PAPRs]=CCDF_PAPR_DFTspreading(fdma_type,Ndb,b,N,dBcs,Nblk,psf,Nos
 % psf   : Pulse shaping filter coefficient vector
 % Nos   : Oversampling factor
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 M=2^b; Es=1; A=sqrt(3/2/(M-1)*Es); % Alphbet size and Normalization factor for QAM

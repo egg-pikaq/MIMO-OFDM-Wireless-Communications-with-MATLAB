@@ -11,7 +11,7 @@ function hh=channel_coeff(NT,NR,N,Rtx,Rrx,type)
 %   Outputs:
 %       hh     : NR x NT x N correlated channel
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 % uncorrelated Rayleigh fading channel, CN(1,0)

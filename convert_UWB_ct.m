@@ -7,7 +7,7 @@ function [hN,N] = convert_UWB_ct(h_ct, t, np, num_channels, ts)
 % It is up to the user to then apply any filtering and/or complex downconversion and then
 % decimate by N to finally obtain an impulse response at time resolution ts.
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
  
 min_Nfs = 100; % GHz

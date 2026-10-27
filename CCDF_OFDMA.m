@@ -6,7 +6,7 @@ function CCDF=CCDF_OFDMA(N,Nos,b,dBs,Nblk)
 % dBs  : dB vector
 % Nblk : Number of OFDM blocks for nblkation
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 dBcs = dBs + (dBs(2)-dBs(1))/2; % dB midpoint vector

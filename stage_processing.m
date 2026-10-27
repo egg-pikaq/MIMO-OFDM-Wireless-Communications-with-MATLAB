@@ -9,7 +9,7 @@ function [flag,transition] = stage_processing(flag,transition)
 %     flag : stage number is calculated from flag
 %     transition : next stage number, 0 : R*2, 1: next stage, len+2: finish
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 global x_list;

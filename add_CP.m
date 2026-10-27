@@ -1,7 +1,7 @@
 function y=add_CP(x,Ncp)
-% Add cyclic prefix|¼ÓÑ­»·Ç°×º(CP)
+% Add cyclic prefix|åŠ å¾ªç¯å‰ç¼€(CP)
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/

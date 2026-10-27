@@ -1,25 +1,25 @@
 function CFO_est=CFO_Classen(yp,Nfft,Ng,Nps)
 % Frequency-domain CFO estimation using Classen method based on pilot tones
-% ÀûÓÃClassen·½·¨£¬»ùÓÚµ¼ÆµµÄÆµÓòCFO¹À¼Æ¼¼Êõ
-% Nps : Pilot spacing|µ¼Æµ¼ä¸ô£¬»òÕß¾ÍÊÇµ¼Æµ±¾Éí£¬È¡¾öÓÚµ÷ÓÃÊ±¸øµÄ²ÎÊı
+% åˆ©ç”¨Classenæ–¹æ³•ï¼ŒåŸºäºå¯¼é¢‘çš„é¢‘åŸŸCFOä¼°è®¡æŠ€æœ¯
+% Nps : Pilot spacing|å¯¼é¢‘é—´éš”ï¼Œæˆ–è€…å°±æ˜¯å¯¼é¢‘æœ¬èº«ï¼Œå–å†³äºè°ƒç”¨æ—¶ç»™çš„å‚æ•°
 
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
-if length(Nps)==1, % µ÷ÓÃÊ±¸øµÄ¿ÉÄÜÊÇµ¼Æµ¼ä¸ô£¬Ò²¿ÉÄÜÊÇµ¼Æµ±¾Éí£¬ĞèÒªÅĞ¶Ï
-    Xp=add_pilot(zeros(1,Nfft),Nfft,Nps); % Pilot signal|µ¼ÆµĞÅºÅ
+if length(Nps)==1, % è°ƒç”¨æ—¶ç»™çš„å¯èƒ½æ˜¯å¯¼é¢‘é—´éš”ï¼Œä¹Ÿå¯èƒ½æ˜¯å¯¼é¢‘æœ¬èº«ï¼Œéœ€è¦åˆ¤æ–­
+    Xp=add_pilot(zeros(1,Nfft),Nfft,Nps); % Pilot signal|å¯¼é¢‘ä¿¡å·
 else
     Xp=Nps; % If Nps is given as an array, it must be a pilot sequence Xp
 end
-Nofdm=Nfft+Ng; kk=find(Xp~=0); Xp=Xp(kk); % Extract pilot tones|ÌáÈ¡µ¼Æµ
+Nofdm=Nfft+Ng; kk=find(Xp~=0); Xp=Xp(kk); % Extract pilot tones|æå–å¯¼é¢‘
 for i=1:2 
    yp_without_CP = remove_CP(yp(1+Nofdm*(i-1):Nofdm*i),Ng);
    Yp(i,:) = fft(yp_without_CP,Nfft);
 end
 %temp= Y(1,kk)*Xp(kk)';
-CFO_est = angle(Yp(2,kk).*Xp*(Yp(1,kk).*Xp)')/(2*pi)*Nfft/Nofdm; % Eq.(5.31)|Ê½5.31£¨146Ò³£©
+CFO_est = angle(Yp(2,kk).*Xp*(Yp(1,kk).*Xp)')/(2*pi)*Nfft/Nofdm; % Eq.(5.31)|å¼5.31ï¼ˆ146é¡µï¼‰
 %fprintf(' dFCFO-Esti_FFO=%8.5f-%8.5f\n', dFCFO,Esti_FFO);
 % MSE = MSE + (CFO_est-FCFO)*(CFO_est-CFO);

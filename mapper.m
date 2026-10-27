@@ -2,7 +2,7 @@ function [modulated_symbols,Mod] = mapper(b,N)
 % If N is given, it generates a block of N random 2^b-PSK/QAM modulated symbols.
 % Otherwise, it generates a block of 2^b-PSK/QAM modulated symbols for [0:2^b-1].
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/

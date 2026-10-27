@@ -1,26 +1,26 @@
 function H_LS = LS_CE(Y,Xp,pilot_loc,Nfft,Nps,int_opt)
-% LS channel estimation function|LSĞÅµÀ¹À¼Æ
+% LS channel estimation function|LSä¿¡é“ä¼°è®¡
 % Inputs:
-%       Y         = Frequency-domain received signal|ÆµÓò½ÓÊÕĞÅºÅ
-%       Xp        = Pilot signal|µ¼ÆµĞÅºÅ
-%       pilot_loc = Pilot location|µ¼ÆµÎ»ÖÃ
-%       N         = FFT size|FFT´óĞ¡
-%       Nps       = Pilot spacing|µ¼Æµ¼ä¸ô
-%       int_opt   = 'linear' or 'spline'|²åÖµ·½·¨£ºÏßĞÔ/Èı´ÎÑùÌõ²åÖµ
+%       Y         = Frequency-domain received signal|é¢‘åŸŸæ¥æ”¶ä¿¡å·
+%       Xp        = Pilot signal|å¯¼é¢‘ä¿¡å·
+%       pilot_loc = Pilot location|å¯¼é¢‘ä½ç½®
+%       N         = FFT size|FFTå¤§å°
+%       Nps       = Pilot spacing|å¯¼é¢‘é—´éš”
+%       int_opt   = 'linear' or 'spline'|æ’å€¼æ–¹æ³•ï¼šçº¿æ€§/ä¸‰æ¬¡æ ·æ¡æ’å€¼
 % output:
-%       H_LS      = LS channel etimate|LSĞÅµÀ¹À¼Æ
+%       H_LS      = LS channel etimate|LSä¿¡é“ä¼°è®¡
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
-Np=Nfft/Nps; % µ¼ÆµÊıÁ¿
+Np=Nfft/Nps; % å¯¼é¢‘æ•°é‡
 k=1:Np; 
-LS_est(k) = Y(pilot_loc(k))./Xp(k);  % LS channel estimation|LSĞÅµÀ¹À¼Æ
-if  lower(int_opt(1))=='l', % È·¶¨²åÖµ·½·¨
+LS_est(k) = Y(pilot_loc(k))./Xp(k);  % LS channel estimation|LSä¿¡é“ä¼°è®¡
+if  lower(int_opt(1))=='l', % ç¡®å®šæ’å€¼æ–¹æ³•
     method='linear'; 
 else
     method='spline';  
 end
-H_LS = interpolate(LS_est,pilot_loc,Nfft,method); % Linear/Spline interpolation|ÏßĞÔ/Èı´ÎÑùÌõ²åÖµ
+H_LS = interpolate(LS_est,pilot_loc,Nfft,method); % Linear/Spline interpolation|çº¿æ€§/ä¸‰æ¬¡æ ·æ¡æ’å€¼

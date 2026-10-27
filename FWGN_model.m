@@ -7,7 +7,7 @@ function [h,Nfft,Nifft,doppler_coeff]=FWGN_model(fm,fs,N)
 % Output
 %   h = Complex fading channel
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 % Make them simple by taking a FFT with some 2^n points.

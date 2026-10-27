@@ -1,41 +1,41 @@
 function H_MMSE = MMSE_CE(Y,Xp,pilot_loc,Nfft,Nps,h,SNR)
 %function H_MMSE = MMSE_CE(Y,Xp,pilot_loc,Nfft,Nps,h,ts,SNR)
-% MMSE channel estimation function|MMSEĞÅµÀ¹À¼Æ
+% MMSE channel estimation function|MMSEä¿¡é“ä¼°è®¡
 % Inputs:
-%       Y         = Frequency-domain received signal|ÆµÓò½ÓÊÕĞÅºÅ
-%       Xp        = Pilot signal|µ¼ÆµĞÅºÅ
-%       pilot_loc = Pilot location|µ¼ÆµÎ»ÖÃ
-%       Nfft      = FFT size|FFT´óĞ¡
-%       Nps       = Pilot spacing|µ¼Æµ¼ä¸ô
-%       h         = Channel impulse response|ĞÅµÀÂö³åÏìÓ¦
-%       ts        = Sampling time|²ÉÑùÊ±¼ä
-%       SNR       = Signal-to-Noise Ratio[dB]|ĞÅÔë±ÈdB
+%       Y         = Frequency-domain received signal|é¢‘åŸŸæ¥æ”¶ä¿¡å·
+%       Xp        = Pilot signal|å¯¼é¢‘ä¿¡å·
+%       pilot_loc = Pilot location|å¯¼é¢‘ä½ç½®
+%       Nfft      = FFT size|FFTå¤§å°
+%       Nps       = Pilot spacing|å¯¼é¢‘é—´éš”
+%       h         = Channel impulse response|ä¿¡é“è„‰å†²å“åº”
+%       ts        = Sampling time|é‡‡æ ·æ—¶é—´
+%       SNR       = Signal-to-Noise Ratio[dB]|ä¿¡å™ªæ¯”dB
 % output:
-%      H_MMSE     = MMSE channel estimate|MMSEĞÅµÀ¹À¼Æ
+%      H_MMSE     = MMSE channel estimate|MMSEä¿¡é“ä¼°è®¡
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 %H = fft(h,N);
 snr = 10^(SNR*0.1);
-Np=Nfft/Nps; % µ¼ÆµÊıÁ¿
+Np=Nfft/Nps; % å¯¼é¢‘æ•°é‡
 k=1:Np; 
-H_tilde = Y(1,pilot_loc(k))./Xp(k);  % LS estimate|LSĞÅµÀ¹À¼Æ
+H_tilde = Y(1,pilot_loc(k))./Xp(k);  % LS estimate|LSä¿¡é“ä¼°è®¡
 k=0:length(h)-1; %k_ts = k*ts; 
 hh = h*h'; 
 tmp = h.*conj(h).*k; %tmp = h.*conj(h).*k_ts;
 r = sum(tmp)/hh;    r2 = tmp*k.'/hh; %r2 = tmp*k_ts.'/hh;
-tau_rms = sqrt(r2-r^2);     % rms delay|rmsÊ±ÑÓ£¬Êé14Ò³£¬Ê½1.20
+tau_rms = sqrt(r2-r^2);     % rms delay|rmsæ—¶å»¶ï¼Œä¹¦14é¡µï¼Œå¼1.20
 df = 1/Nfft;  %1/(ts*Nfft);
 j2pi_tau_df = j*2*pi*tau_rms*df;
-K1 = repmat([0:Nfft-1].',1,Np); % K1µÄ´óĞ¡ÎªNfft*Np£¬Ã¿Ò»ÁĞ¾ùÎª0:Nfft-1
-K2 = repmat([0:Np-1],Nfft,1); % K2µÄ´óĞ¡ÎªNfft*Np£¬Ã¿Ò»ĞĞ¾ùÎª0:Np-1
-rf = 1./(1+j2pi_tau_df*(K1-K2*Nps)); % Ê½6.16
-K3 = repmat([0:Np-1].',1,Np); % K3µÄ´óĞ¡ÎªNp*Np£¬Ã¿Ò»ÁĞ¾ùÎª0:Np-1
-K4 = repmat([0:Np-1],Np,1); % K4µÄ´óĞ¡ÎªNp*Np£¬Ã¿Ò»ĞĞ¾ùÎª0:Np-1
-rf2 = 1./(1+j2pi_tau_df*Nps*(K3-K4)); % Ê½6.17
+K1 = repmat([0:Nfft-1].',1,Np); % K1çš„å¤§å°ä¸ºNfft*Npï¼Œæ¯ä¸€åˆ—å‡ä¸º0:Nfft-1
+K2 = repmat([0:Np-1],Nfft,1); % K2çš„å¤§å°ä¸ºNfft*Npï¼Œæ¯ä¸€è¡Œå‡ä¸º0:Np-1
+rf = 1./(1+j2pi_tau_df*(K1-K2*Nps)); % å¼6.16
+K3 = repmat([0:Np-1].',1,Np); % K3çš„å¤§å°ä¸ºNp*Npï¼Œæ¯ä¸€åˆ—å‡ä¸º0:Np-1
+K4 = repmat([0:Np-1],Np,1); % K4çš„å¤§å°ä¸ºNp*Npï¼Œæ¯ä¸€è¡Œå‡ä¸º0:Np-1
+rf2 = 1./(1+j2pi_tau_df*Nps*(K3-K4)); % å¼6.17
 Rhp = rf;
 Rpp = rf2 + eye(length(H_tilde),length(H_tilde))/snr;
-H_MMSE = transpose(Rhp*inv(Rpp)*H_tilde.');  % MMSE channel estimate|MMSEĞÅµÀ¹À¼Æ£¬Ê½6.14
+H_MMSE = transpose(Rhp*inv(Rpp)*H_tilde.');  % MMSE channel estimate|MMSEä¿¡é“ä¼°è®¡ï¼Œå¼6.14

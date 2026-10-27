@@ -2,7 +2,7 @@
 % To plot Fig. 4.6 on p74 of
 % "Introduction to Space-Time Wireless Communications", A. Paulraj, R. Nabar and D. Gore
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 clear all, close all;

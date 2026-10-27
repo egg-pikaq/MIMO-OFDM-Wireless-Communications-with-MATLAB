@@ -1,9 +1,9 @@
 function xp=add_pilot(x,Nfft,Nps)
 % CAZAC (Constant Amplitude Zero AutoCorrelation) sequence --> pilot
-% CAZAC(ºã¶¨·ù¶ÈÁã×ÔÏà¹Ø)ÐòÁÐ --> µ¼Æµ
-% Nps : Pilot spacing|µ¼Æµ¼ä¸ô
+% CAZAC(æ’å®šå¹…åº¦é›¶è‡ªç›¸å…³)åºåˆ— --> å¯¼é¢‘
+% Nps : Pilot spacing|å¯¼é¢‘é—´éš”
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
@@ -11,10 +11,10 @@ function xp=add_pilot(x,Nfft,Nps)
 if nargin<3, 
     Nps=4; 
 end
-Np=Nfft/Nps; % Number of pilots|µ¼ÆµÊý
-xp=x; % an OFDM signal including pilot signal|×¼±¸°üÀ¨µ¼ÆµÐÅºÅÔÚÄÚµÄOFDMÐÅºÅ
+Np=Nfft/Nps; % Number of pilots|å¯¼é¢‘æ•°
+xp=x; % an OFDM signal including pilot signal|å‡†å¤‡åŒ…æ‹¬å¯¼é¢‘ä¿¡å·åœ¨å†…çš„OFDMä¿¡å·
 for k=1:Np
-   xp((k-1)*Nps+1)= exp(j*pi*(k-1)^2/Np);  % Pilot boosting with an even Np|Ê½7.17£¨185Ò³£©
+   xp((k-1)*Nps+1)= exp(j*pi*(k-1)^2/Np);  % Pilot boosting with an even Np|å¼7.17ï¼ˆ185é¡µï¼‰
    %xp((k-1)*Nps+1)= exp(j*pi*(k-1)*k/Np);  % Pilot boosting with an odd Np
 end
 % CAZAC (Constant Amplitude Zero AutoCorrelation) sequence --> pilot

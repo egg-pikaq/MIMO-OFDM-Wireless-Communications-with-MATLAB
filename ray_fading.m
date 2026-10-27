@@ -13,7 +13,7 @@ function h=ray_fading(M,PDP,BS_PHI_rad,MS_theta_deg,v_ms,theta_v_deg,lambda,t)
 %   Outputs:
 %       h               : 1xlength(PDP) channel coefficient
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 MS_theta_rad=deg2rad(MS_theta_deg);

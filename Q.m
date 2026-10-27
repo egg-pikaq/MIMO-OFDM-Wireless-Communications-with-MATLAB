@@ -1,3 +1,3 @@
 function y=Q(x)
-% co-error function: 1/sqrt(2*pi) * int_x^inf exp(-t^2/2) dt.|Îó²îº¯Êý
+% co-error function: 1/sqrt(2*pi) * int_x^inf exp(-t^2/2) dt.|è¯¯å·®å‡½æ•°
 y=erfc(x/sqrt(2))/2;

@@ -1,14 +1,14 @@
 function y_CFO=add_CFO(y,CFO,Nfft)
-% To add an arbitrary frequency offset| ©º”CFO
-% Input: y    = Time-domain received signal| ±”ÚΩ” ’–≈∫≈
+% To add an arbitrary frequency offset|ÊñΩÂä†CFO
+% Input: y    = Time-domain received signal|Êó∂ÂüüÊé•Êî∂‰ø°Âè∑
 %        dCFO = FFO (fractional CFO) + IFO (integral CFO)
-%        Nfft = FFT size;|FFT¥Û–°
+%        Nfft = FFT size;|FFTÂ§ßÂ∞è
 
-% MIMO-OFDM Wireless Communications with MATLAB¢Á   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLAB„à¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 nn=0:length(y)-1; 
-y_CFO = y.*exp(j*2*pi*CFO*nn/Nfft); % ±Ì5.3£®133“≥£©
+y_CFO = y.*exp(j*2*pi*CFO*nn/Nfft); % Ë°®5.3Ôºà133È°µÔºâ
 % plot(real(y_CFO),imag(y_CFO),'.')

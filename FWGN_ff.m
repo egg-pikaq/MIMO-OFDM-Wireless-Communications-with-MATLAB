@@ -12,7 +12,7 @@ function [FadTime,tf] = FWGN_ff(Np,fm_Hz,Nfading,Nfosf,FadingType,varargin)
 % Outputs:
 %  FadTime    : Np x Nfading, fading time matrix
 
-%MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+%MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 %2010 John Wiley & Sons (Asia) Pte Ltd
 
 fmax= max(fm_Hz);

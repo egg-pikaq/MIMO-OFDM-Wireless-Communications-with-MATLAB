@@ -1,12 +1,12 @@
 function CFO_est=CFO_CP(y,Nfft,Ng)
 % Time-domain CFO estimation based on CP (Cyclic Prefix)
-% »ùÓÚCPµÄÊ±ÓòCFO¹À¼Æ
+% åŸºäºCPçš„æ—¶åŸŸCFOä¼°è®¡
 
-% MIMO-OFDM Wireless Communications with MATLAB¢ç   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
+% MIMO-OFDM Wireless Communications with MATLABãˆ¢   Yong Soo Cho, Jaekwon Kim, Won Young Yang and Chung G. Kang
 % 2010 John Wiley & Sons (Asia) Pte Ltd
 
 % http://www.wiley.com//legacy/wileychi/cho/
 
 nn=1:Ng; 
-CFO_est = angle(y(nn+Nfft)*y(nn)')/(2*pi);  % Eq.(5.23){Ô­À´´úÂëÎª5.27£¬ÓëÊéÉÏ²»·û}|Ê½5.23£¨144Ò³£©
+CFO_est = angle(y(nn+Nfft)*y(nn)')/(2*pi);  % Eq.(5.23){åŸæ¥ä»£ç ä¸º5.27ï¼Œä¸ä¹¦ä¸Šä¸ç¬¦}|å¼5.23ï¼ˆ144é¡µï¼‰
 % MSE = MSE + (CFO_est-CFO)*(CFO_est-CFO);
